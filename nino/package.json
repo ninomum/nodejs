@@ -1,0 +1,27 @@
+{
+  "name": "nino",
+  "version": "1.0.0",
+  "description": "nino 的",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "jade": "^1.11.0",
+    "jquery": "^3.3.1",
+    "moment": "^2.22.2",
+    "mongoose": "^5.2.7",
+    "pug": "^2.0.3",
+    "serve-static": "^1.13.2",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node.js",
+    "MongoDB"
+  ],
+  "author": "nino妈",
+  "license": "ISC"
+}
