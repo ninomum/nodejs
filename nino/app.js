@@ -21,21 +21,27 @@ app.get('/', function(req, res){
         },{
             title: 'nino 2',
             _id: 2,
+            poster: "/image/2.jpg"
         },{
             title: 'nino 3',
             _id: 3,
+            poster: "/image/3.jpg"
         },{
             title: 'nino 4',
             _id: 4,
+            poster: "/image/4.jpg"
         },{
             title: 'nino 5',
             _id: 5,
+            poster: "/image/5.png"
         },{
             title: 'nino 6',
             _id: 6,
+            poster: "/image/6.png"
         },{
             title: 'nino 7',
             _id: 7,
+            poster: "/image/7.png"
         }]
     })
 });
