@@ -49,7 +49,8 @@ app.get('/', function(req, res){
 app.get('/movie/:id', function(req, res){
     res.render('detail',{
         title: 'nino 详情',
-        movies: {
+        movie: {
+            flash: "/image/1.swf",
             title: 'nino 1',
             who: 'mum',
             where: 'home',
@@ -75,13 +76,20 @@ app.get('/admin/movie', function(req, res){
 app.get('/admin/list', function(req, res){
     res.render('list',{
         title: 'nino 列表',
-        movies: {
+        movie: [{
             title: 'nino 1',
             _id: 1,
             who: 'mum',
             where: 'home',
             when: '2018.8.8',
             what: 'nino最可爱',
-        },
+        },{
+            title: 'nino 2',
+            _id: 2,
+            who: 'mum2',
+            where: 'home2',
+            when: '2018.8.9',
+            what: 'nino最最最可爱',
+        }]
     })
 })
