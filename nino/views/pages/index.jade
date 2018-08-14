@@ -6,8 +6,8 @@ block content
             each item in movies
                 .col-md-2
                     .thumbnail
-                        a(href="/movie/#{item._id}")
+                        a(href="/movie/#{item.id}")
                             img(src="#{item.poster}", alt="#{item.title}" height="150" width="150")
                         .caption
                             h3 #{title}
-                            p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 看看小nino
+                            p: a.btn.btn-primary(href="/movie/#{item.id}", role="button") 看看小nino

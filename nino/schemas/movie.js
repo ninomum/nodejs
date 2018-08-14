@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 
 var movieSchema = new mongoose.Schema({
     title: String,
-    _id: Number,
     who: String,
     where: String,
     when: String,
@@ -40,7 +39,7 @@ movieSchema.statics = {
     },
     findById: function (id, cb) {
         return this
-            .findOne({_id: id})
+            .findOne({id: id})
             .exec(cb)
     }
 }
