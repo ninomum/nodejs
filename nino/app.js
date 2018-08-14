@@ -12,20 +12,25 @@ app.listen(port);
 console.log('nino started on port ' + port);
 
 var mongoose = require('mongoose'); // 加载mongoose模块
-mongoose.connect('mongodb://localhost/nino'); // 连接mongodb本地数据库imovie
+mongoose.connect('mongodb://localhost:27017/nino', function(err){
+　　if(err){
+　　　　console.log('Connection Error:' + err)
+　　}else{
+　　　　console.log('Connection success!') }
+})// 连接mongodb本地数据库imovie
 console.log('MongoDB connection success!');
 var movie = require('./models/movie.js'); // 载入mongoose编译后的模型movie
 
 var _underscore = require('underscore'); // _.extend用新对象里的字段替换老的字段
 
 app.get('/', function(req, res){
-    movie.fetch(function (err, movies) {
+    movie.fetch(function (err, movie) {
         if (err) {
             console.log(err);
         }
         res.render('index', {  // 渲染index 首页
             title: 'i_movie 首页',
-            movies: movies
+            movie: movie
         });
     });
     // res.render('index',{
@@ -86,7 +91,7 @@ app.get('/movie/:id', function(req, res){
 app.get('/admin/movie', function(req, res){
     res.render('admin',{
         title: 'nino 后台',
-        movies: {
+        movie: {
             title: '',
             who: '',
             where: '',
@@ -96,9 +101,22 @@ app.get('/admin/movie', function(req, res){
     })
 });
 
+// admin update movie 后台更新页
+app.get('/admin/update/:id', function (req, res) {
+    var id = req.params.id;
+    if (id) {
+        movie.findById(id, function (err, movie) {
+            res.render('admin', {
+                title: 'imovie 后台更新页',
+                movie: movie
+            });
+        });
+    }
+});
+
 // admin post movie 后台录入提交
 app.post('/admin/movie/new', function (req, res) {
-    var id = req.body.movie._id;
+    var id = req.body.movie.id;
     var movieObj = req.body.movie;
     var _movie = null;
     if (id !== 'undefined') { // 已经存在的电影数据
@@ -116,14 +134,12 @@ app.post('/admin/movie/new', function (req, res) {
         });
     } else {  // 新加的电影
         _movie = new movie({
-            doctor: movieObj.doctor,
             title: movieObj.title,
-            country: movieObj.country,
-            language: movieObj.language,
-            year: movieObj.year,
-            poster: movieObj.poster,
-            summary: movieObj.summary,
-            flash: movieObj.flash
+            id: movieObj.id,
+            who: movieObj.who,
+            where: movieObj.where,
+            when: movieObj.when,
+            what: movieObj.what,
         });
         _movie.save(function (err, movie) {
             if (err) {
@@ -135,22 +151,31 @@ app.post('/admin/movie/new', function (req, res) {
 });
 
 app.get('/admin/list', function(req, res){
-    res.render('list',{
-        title: 'nino 列表',
-        movie: [{
-            title: 'nino 1',
-            _id: 1,
-            who: 'mum',
-            where: 'home',
-            when: '2018.8.8',
-            what: 'nino最可爱',
-        },{
-            title: 'nino 2',
-            _id: 2,
-            who: 'mum2',
-            where: 'home2',
-            when: '2018.8.9',
-            what: 'nino最最最可爱',
-        }]
-    })
+    movie.fetch(function (err, movie) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('list', {
+            title: 'i_movie 列表页',
+            movie: movie
+        });
+    });
+    // res.render('list',{
+    //     title: 'nino 列表',
+    //     movie: [{
+    //         title: 'nino 1',
+    //         _id: 1,
+    //         who: 'mum',
+    //         where: 'home',
+    //         when: '2018.8.8',
+    //         what: 'nino最可爱',
+    //     },{
+    //         title: 'nino 2',
+    //         _id: 2,
+    //         who: 'mum2',
+    //         where: 'home2',
+    //         when: '2018.8.9',
+    //         what: 'nino最最最可爱',
+    //     }]
+    // })
 })

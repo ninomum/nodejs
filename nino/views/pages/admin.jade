@@ -1,10 +1,31 @@
 extends ../layout
 
 block content
-    .container
-        .row    
-            form.form-horizontal(method="post", action="/admin/movie/new")
-                .form-group
-                    lab.col-sm-3.comtrol-label(for="inputTitle") 小片名称
-                    .col-sm-10
-                        input#inputTitle.form-control(type="text", name="movie[title]")
+  .container
+    .row
+      form.form-horizontal(method="post", action="/admin/movie/new")
+        input(type="hidden", name="movie[id]", value="#{movie.id}")
+        //隐藏表单域，用来更新电影数据，存储电影ID
+        .form-group
+          label.col-sm-2.control-label(for="inputTitle") 名称
+          .col-sm-10
+            input#inputTitle.form-control(type="text", name="movie[title]", value="#{movie.title}")
+        .form-group
+          label.col-sm-2.control-label(for="inputWho")  拍摄者
+          .col-sm-10
+            input#inputWho.form-control(type="text", name="movie[who]", value="#{movie.who}")
+        .form-group
+          label.col-sm-2.control-label(for="inputWhere") 地点
+          .col-sm-10
+            input#inputWhere.form-control(type="text", name="movie[where]", value="#{movie.where}")
+        .form-group
+          label.col-sm-2.control-label(for="inputWhen") 时间
+          .col-sm-10
+            input#inputWhen.form-control(type="text", name="movie[when]", value="#{movie.when}")
+        .form-group
+          label.col-sm-2.control-label(for="inputWhat") 事件
+          .col-sm-10
+            input#inputWhat.form-control(type="text", name="movie[what]", value="#{movie.what}")
+        .form-group
+          .col-sm-offset-2.col-sm-10
+          button.btn.btn-default(type="submit") 录入
