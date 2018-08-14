@@ -3,18 +3,18 @@ extends ../layout
 block content
     .container
         .row    
-                .col-md-8
-                    embed(src="#{movie.flash}", allowFullScreen="true", quality="high",
-                    width="720", height="600", align="middle", type="application/x-shockwave-flash")
-                .col-md-4
-                    dl.dl-horizontal
-                        dt 小片名称
-                        dd= movie.title
-                        dt 谁拍的
-                        dd= movie.who
-                        dt 在哪里
-                        dd= movie.where
-                        dt 什么时间
-                        dd= movie.when
-                        dt 简介
-                        dd= movie.what
+            .col-md-6
+                embed(src="/image/1.png", allowFullScreen="true", quality="high",
+                width="600", height="600", align="middle", type="application/x-shockwave-flash")
+            .col-md-6
+                dl.dl-horizontal
+                    dt 小片名称
+                    dd= movie.title
+                    dt 谁拍的
+                    dd= movie.who
+                    dt 在哪里
+                    dd= movie.where
+                    dt 什么时间
+                    dd= movie.when
+                    dt 简介
+                    dd= movie.what
